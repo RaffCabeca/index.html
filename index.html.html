@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MARKETPRO Academy — Aprenda Marketing Digital</title>
+<style>
+  :root{
+    --bg:#050a0a;
+    --bg2:#071010;
+    --card:#0a1414;
+    --card2:#0c1818;
+    --border:#12302c;
+    --teal:#00e5c0;
+    --teal-dark:#00b89a;
+    --txt:#e8f5f2;
+    --muted:#8fb0aa;
+    --muted2:#5d7d77;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,-apple-system,sans-serif}
+  body{background:var(--bg);color:var(--txt);overflow-x:hidden}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+
+  /* ===== NAV ===== */
+  nav{position:sticky;top:0;z-index:50;background:rgba(5,10,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:1140px;margin:0 auto}
+  .logo{display:flex;align-items:center;gap:10px}
+  .logo-mark{width:34px;height:34px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;color:#031010;font-size:18px}
+  .logo-txt{line-height:1}
+  .logo-txt b{font-size:15px;letter-spacing:1px}
+  .logo-txt span{display:block;font-size:9px;letter-spacing:3px;color:var(--teal)}
+  .nav-links{display:flex;gap:28px;font-size:12px;letter-spacing:1px;font-weight:600;color:var(--muted)}
+  .nav-links a:hover{color:var(--teal)}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#031010;font-weight:800;border:none;border-radius:8px;padding:12px 22px;font-size:12px;letter-spacing:1px;cursor:pointer;transition:.2s}
+  .btn:hover{background:var(--teal-dark);transform:translateY(-2px)}
+  .btn.small{padding:10px 18px;font-size:11px}
+  .btn.outline{background:transparent;border:1.5px solid var(--teal);color:var(--teal)}
+  .btn.outline:hover{background:rgba(0,229,192,.08)}
+
+  /* ===== HERO ===== */
+  .hero{position:relative;padding:70px 0 50px;background:
+    radial-gradient(circle at 85% 20%, rgba(0,229,192,.10), transparent 45%),
+    radial-gradient(circle at 10% 80%, rgba(0,229,192,.05), transparent 40%)}
+  .hero::after{content:"";position:absolute;right:0;top:0;width:220px;height:100%;background-image:radial-gradient(rgba(0,229,192,.35) 1px, transparent 1px);background-size:14px 14px;opacity:.25;pointer-events:none;mask-image:linear-gradient(to left, #000, transparent)}
+  .hero-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:center}
+  .hero h1{font-size:34px;line-height:1.15;font-weight:900;text-transform:uppercase}
+  .hero h1 .accent{color:var(--teal)}
+  .hero p.sub{margin:18px 0 22px;color:var(--muted);font-size:15px;line-height:1.6;max-width:420px}
+  .hero-checks{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;max-width:420px;margin-bottom:26px}
+  .hcheck{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600}
+  .hcheck .ic{width:18px;height:18px;border-radius:50%;background:var(--teal);color:#031010;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0}
+  .hero-note{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:12px;color:var(--teal)}
+
+  /* Mockups */
+  .mockups{position:relative;min-height:420px}
+  .laptop{position:absolute;top:20px;left:0;width:88%;}
+  .laptop-screen{background:#0b1616;border:6px solid #1a2626;border-bottom:none;border-radius:14px 14px 0 0;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.6)}
+  .laptop-base{height:16px;background:linear-gradient(#2a3838,#141f1f);border-radius:0 0 16px 16px;box-shadow:0 8px 20px rgba(0,0,0,.5)}
+  .dash{display:grid;grid-template-columns:120px 1fr;min-height:280px;background:#081212}
+  .dash-side{background:#0a1616;border-right:1px solid var(--border);padding:14px 10px;font-size:9px;color:var(--muted2)}
+  .dash-side .dlogo{display:flex;align-items:center;gap:6px;margin-bottom:16px}
+  .dash-side .dlogo .dm{width:16px;height:16px;background:var(--teal);border-radius:4px}
+  .dash-side .dlogo b{font-size:8px;color:var(--txt);letter-spacing:1px}
+  .dash-item{display:flex;align-items:center;gap:6px;padding:6px 8px;border-radius:6px;margin-bottom:4px}
+  .dash-item.active{background:rgba(0,229,192,.12);color:var(--teal)}
+  .dash-item .dot{width:6px;height:6px;border-radius:2px;background:currentColor;opacity:.7}
+  .dash-main{padding:14px}
+  .dash-main .dtitle{font-size:10px;font-weight:700;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center}
+  .dash-main .dtitle .pill{font-size:7px;color:var(--teal);border:1px solid var(--teal);border-radius:20px;padding:2px 8px}
+  .dash-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+  .dcard{background:#0c1a1a;border:1px solid var(--border);border-radius:8px;padding:8px}
+  .dcard .dl{font-size:7px;color:var(--muted2);margin-bottom:3px}
+  .dcard .dv{font-size:12px;font-weight:800;color:var(--txt)}
+  .dcard .dv.tl{color:var(--teal)}
+  .chart-box{background:#0c1a1a;border:1px solid var(--border);border-radius:8px;padding:8px}
+  .phone{position:absolute;right:0;top:80px;width:34%;max-width:190px;background:#0b1616;border:5px solid #1a2626;border-radius:24px;overflow:hidden;box-shadow:0 25px 50px rgba(0,0,0,.7);z-index:2}
+  .phone-inner{padding:14px 12px;background:#081212;min-height:330px}
+  .phone .plogo{text-align:center;margin-bottom:12px}
+  .phone .plogo b{font-size:9px;letter-spacing:1px}
+  .phone .plogo span{display:block;font-size:6px;letter-spacing:2px;color:var(--teal)}
+  .phone .ptitle{font-size:8px;color:var(--muted);letter-spacing:1px;margin-bottom:8px;text-align:center;text-transform:uppercase}
+  .pmod{display:flex;align-items:center;gap:8px;background:#0c1a1a;border:1px solid var(--border);border-radius:8px;padding:8px;margin-bottom:6px;font-size:8px}
+  .pmod .pn{width:20px;height:20px;border-radius:6px;background:rgba(0,229,192,.15);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:800;flex-shrink:0}
+
+  /* ===== BAR BENEFITS ===== */
+  .benefits-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2)}
+  .bbar{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .bitem{display:flex;align-items:center;gap:12px;padding:22px 18px;border-right:1px solid var(--border)}
+  .bitem:last-child{border-right:none}
+  .bitem .bic{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--teal);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+  .bitem b{display:block;font-size:12px;letter-spacing:.5px;text-transform:uppercase}
+  .bitem span{font-size:11px;color:var(--muted)}
+
+  /* ===== SECTION TITLES ===== */
+  .sec{padding:60px 0}
+  .sec-title{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:36px}
+  .sec-title h2{font-size:18px;letter-spacing:2px;font-weight:800;text-transform:uppercase;color:var(--teal);white-space:nowrap}
+  .sec-title .line{height:1px;width:60px;background:var(--teal);opacity:.5}
+
+  /* ===== LEARN GRID ===== */
+  .learn-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+  .lcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 16px;text-align:center;transition:.25s}
+  .lcard:hover{border-color:var(--teal);transform:translateY(-4px)}
+  .lcard .lic{width:46px;height:46px;margin:0 auto 14px;border-radius:12px;background:rgba(0,229,192,.1);color:var(--teal);display:flex;align-items:center;justify-content:center;font-size:20px}
+  .lcard b{display:block;font-size:12px;letter-spacing:1px;margin-bottom:8px;text-transform:uppercase}
+  .lcard p{font-size:11px;color:var(--muted);line-height:1.5}
+
+  /* ===== AUDIENCE ===== */
+  .aud-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+  .acard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 12px;text-align:center;transition:.25s}
+  .acard:hover{border-color:var(--teal)}
+  .acard .aic{font-size:22px;color:var(--teal);margin-bottom:10px}
+  .acard span{font-size:11px;color:var(--muted);line-height:1.4;display:block}
+
+  /* ===== RECEIVE + TESTIMONIAL ===== */
+  .rec-row{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:stretch}
+  .rec-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .rcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 10px;text-align:center}
+  .rcard .ric{font-size:20px;color:var(--teal);margin-bottom:8px}
+  .rcard span{font-size:10px;color:var(--muted);line-height:1.4;display:block}
+  .testi{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:24px;display:flex;flex-direction:column;justify-content:center}
+  .testi .avatar{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--teal),#036);display:flex;align-items:center;justify-content:center;font-weight:900;color:#031010;font-size:20px;margin-bottom:14px}
+  .testi p{font-size:13px;line-height:1.6;color:var(--txt);font-style:italic;margin-bottom:12px}
+  .stars{color:var(--teal);letter-spacing:2px;margin-bottom:10px}
+  .testi b{font-size:13px;display:block}
+  .testi small{font-size:11px;color:var(--muted)}
+
+  /* ===== OFFER ===== */
+  .offer{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .offer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:stretch}
+  .price-box{background:var(--card);border:1px solid var(--teal);border-radius:16px;padding:28px;text-align:center;box-shadow:0 0 40px rgba(0,229,192,.08)}
+  .price-box .tag{display:inline-block;background:var(--teal);color:#031010;font-size:10px;font-weight:900;letter-spacing:2px;border-radius:20px;padding:5px 14px;margin-bottom:14px;text-transform:uppercase}
+  .price-box .old{font-size:14px;color:var(--muted);text-decoration:line-through;margin-bottom:6px}
+  .price-box .plabel{font-size:12px;color:var(--muted)}
+  .price-box .price{font-size:38px;font-weight:900;color:var(--teal);line-height:1.1;margin:4px 0}
+  .price-box .vista{font-size:13px;color:var(--muted);margin-bottom:14px}
+  .save{display:inline-block;border:1.5px dashed var(--teal);color:var(--teal);font-size:11px;font-weight:800;border-radius:8px;padding:8px 16px;letter-spacing:1px}
+  .offer-mid{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px}
+  .offer-mid h3{font-size:12px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:16px}
+  .oitem{display:flex;align-items:center;gap:10px;font-size:13px;margin-bottom:12px}
+  .oitem .ic{width:18px;height:18px;border-radius:50%;background:var(--teal);color:#031010;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex-shrink:0}
+  .garantia{display:flex;gap:12px;background:rgba(0,229,192,.06);border:1px solid var(--border);border-radius:12px;padding:14px;margin-top:18px}
+  .garantia .gic{font-size:22px;color:var(--teal)}
+  .garantia b{display:block;font-size:12px;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px}
+  .garantia p{font-size:11px;color:var(--muted);line-height:1.5}
+  .offer-cta{display:flex;flex-direction:column;gap:16px;justify-content:center}
+  .offer-cta .btn{justify-content:center;padding:16px;font-size:13px}
+  .offer-cta .secure{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12px;color:var(--teal)}
+  .timer-box{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;text-align:center}
+  .timer-box .tl{font-size:10px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:12px}
+  .timer{display:flex;justify-content:center;gap:14px}
+  .tunit .tv{font-size:30px;font-weight:900;color:var(--txt);background:#0c1a1a;border:1px solid var(--border);border-radius:10px;padding:8px 14px;min-width:64px}
+  .tunit .tn{font-size:9px;letter-spacing:2px;color:var(--muted);margin-top:6px;text-transform:uppercase}
+
+  /* ===== FAQ ===== */
+  .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .fitem{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px;cursor:pointer;transition:.2s}
+  .fitem:hover{border-color:var(--teal)}
+  .fitem b{display:flex;align-items:flex-start;gap:10px;font-size:13px}
+  .fitem b::before{content:"•";color:var(--teal);font-size:18px;line-height:1}
+  .fitem p{font-size:12px;color:var(--muted);line-height:1.6;margin-top:8px;padding-left:20px}
+
+  footer{border-top:1px solid var(--border);padding:24px 0;text-align:center;font-size:11px;color:var(--muted2)}
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:900px){
+    .nav-links{display:none}
+    .hero-grid{grid-template-columns:1fr}
+    .mockups{min-height:340px;margin-top:10px}
+    .bbar{grid-template-columns:1fr 1fr}
+    .bitem{border-bottom:1px solid var(--border)}
+    .learn-grid{grid-template-columns:repeat(2,1fr)}
+    .aud-grid{grid-template-columns:repeat(3,1fr)}
+    .rec-row{grid-template-columns:1fr}
+    .rec-grid{grid-template-columns:repeat(3,1fr)}
+    .offer-grid{grid-template-columns:1fr}
+    .faq-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:520px){
+    .hero h1{font-size:26px}
+    .learn-grid{grid-template-columns:1fr 1fr}
+    .aud-grid{grid-template-columns:1fr 1fr}
+    .rec-grid{grid-template-columns:repeat(2,1fr)}
+    .bbar{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark">M</div>
+      <div class="logo-txt"><b>MARKETPRO</b><span>ACADEMY</span></div>
+    </div>
+    <div class="nav-links">
+      <a href="#inicio">INÍCIO</a>
+      <a href="#cursos">CURSOS</a>
+      <a href="#depoimentos">DEPOIMENTOS</a>
+      <a href="#beneficios">BENEFÍCIOS</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="#oferta" class="btn small">QUERO COMEÇAR AGORA</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Aprenda Marketing Digital <span class="accent">e venda todos os dias na internet</span></h1>
+      <p class="sub">Domine as estratégias que empresas e profissionais usam para atrair clientes, gerar resultados e vender todos os dias.</p>
+      <div class="hero-checks">
+        <div class="hcheck"><span class="ic">✓</span> Acesso imediato</div>
+        <div class="hcheck"><span class="ic">✓</span> Conteúdo prático</div>
+        <div class="hcheck"><span class="ic">✓</span> Suporte exclusivo</div>
+        <div class="hcheck"><span class="ic">✓</span> Acesso vitalício</div>
+      </div>
+      <a href="#oferta" class="btn">QUERO COMEÇAR AGORA ➜</a>
+      <div class="hero-note">🔒 Acesso imediato após a confirmação</div>
+    </div>
+
+    <div class="mockups">
+      <!-- Laptop -->
+      <div class="laptop">
+        <div class="laptop-screen">
+          <div class="dash">
+            <div class="dash-side">
+              <div class="dlogo"><div class="dm"></div><b>MARKETPRO</b></div>
+              <div class="dash-item active"><span class="dot"></span> Dashboard</div>
+              <div class="dash-item"><span class="dot"></span> Métricas</div>
+              <div class="dash-item"><span class="dot"></span> Vendas</div>
+              <div class="dash-item"><span class="dot"></span> Tráfego</div>
+              <div class="dash-item"><span class="dot"></span> Suporte</div>
+              <div class="dash-item"><span class="dot"></span> Configurações</div>
+              <div class="dash-item"><span class="dot"></span> Sair</div>
+            </div>
+            <div class="dash-main">
+              <div class="dtitle">Dashboard <span class="pill">● Ao vivo</span></div>
+              <div class="dash-cards">
+                <div class="dcard"><div class="dl">Faturamento</div><div class="dv">R$ 32.894,21</div></div>
+                <div class="dcard"><div class="dl">Vendas</div><div class="dv tl">431</div></div>
+                <div class="dcard"><div class="dl">Ticket médio</div><div class="dv">R$ 76,21</div></div>
+              </div>
+              <div class="chart-box">
+                <svg viewBox="0 0 300 90" width="100%" height="90">
+                  <polyline points="0,75 30,68 60,72 90,58 120,62 150,45 180,50 210,35 240,38 270,22 300,15"
+                    fill="none" stroke="#00e5c0" stroke-width="2"/>
+                  <g fill="#00e5c0">
+                    <circle cx="30" cy="68" r="2.5"/><circle cx="90" cy="58" r="2.5"/>
+                    <circle cx="150" cy="45" r="2.5"/><circle cx="210" cy="35" r="2.5"/>
+                    <circle cx="270" cy="22" r="2.5"/>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="laptop-base"></div>
+      </div>
+      <!-- Phone -->
+      <div class="phone">
+        <div class="phone-inner">
+          <div class="plogo"><b>MARKETPRO</b><span>ACADEMY</span></div>
+          <div class="ptitle">Módulos do curso</div>
+          <div class="pmod"><span class="pn">01</span> Introdução</div>
+          <div class="pmod"><span class="pn">02</span> Tráfego Pago</div>
+          <div class="pmod"><span class="pn">03</span> SEO</div>
+          <div class="pmod"><span class="pn">04</span> Copywriting</div>
+          <div class="pmod"><span class="pn">05</span> Social Media</div>
+          <div class="pmod"><span class="pn">06</span> Estratégia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- BENEFITS BAR -->
+<section class="benefits-bar" id="beneficios">
+  <div class="wrap bbar">
+    <div class="bitem"><div class="bic">⚡</div><div><b>Acesso imediato</b><span>Comece agora mesmo</span></div></div>
+    <div class="bitem"><div class="bic">🛡️</div><div><b>Garantia 7 dias</b><span>Satisfação ou reembolso</span></div></div>
+    <div class="bitem"><div class="bic">🔄</div><div><b>Atualizações grátis</b><span>Conteúdo sempre novo</span></div></div>
+    <div class="bitem"><div class="bic">💬</div><div><b>Suporte exclusivo</b><span>Tire suas dúvidas sempre</span></div></div>
+  </div>
+</section>
+
+<!-- LEARN -->
+<section class="sec" id="cursos">
+  <div class="wrap">
+    <div class="sec-title"><span class="line"></span><h2>O que você vai aprender</h2><span class="line"></span></div>
+    <div class="learn-grid">
+      <div class="lcard"><div class="lic">📈</div><b>Tráfego Pago</b><p>Aprenda a criar campanhas lucrativas no Facebook e Instagram.</p></div>
+      <div class="lcard"><div class="lic">🔍</div><b>SEO</b><p>Posicione sites no Google e atraia visitantes todos os dias.</p></div>
+      <div class="lcard"><div class="lic">✍️</div><b>Copywriting</b><p>Escreva anúncios e páginas que convertem e vendem.</p></div>
+      <div class="lcard"><div class="lic">📱</div><b>Social Media</b><p>Crie conteúdo estratégico para Instagram, TikTok e outras redes.</p></div>
+      <div class="lcard"><div class="lic">🎯</div><b>Estratégia</b><p>Monte um plano completo de marketing para gerar resultados reais.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-title"><span class="line"></span><h2>Para quem é este curso?</h2><span class="line"></span></div>
+    <div class="aud-grid">
+      <div class="acard"><div class="aic">🚀</div><span>Iniciantes no marketing digital</span></div>
+      <div class="acard"><div class="aic">💼</div><span>Empreendedores e donos de negócios</span></div>
+      <div class="acard"><div class="aic">🧑‍💻</div><span>Freelancers e prestadores de serviço</span></div>
+      <div class="acard"><div class="aic">📊</div><span>Profissionais de marketing</span></div>
+      <div class="acard"><div class="aic">📈</div><span>Quem quer vender mais e crescer</span></div>
+      <div class="acard"><div class="aic">✨</div><span>Quem quer mudar de vida</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- RECEIVE + TESTIMONIAL -->
+<section class="sec" style="padding-top:0" id="depoimentos">
+  <div class="wrap rec-row">
+    <div>
+      <div class="sec-title" style="justify-content:flex-start"><span class="line"></span><h2>O que você recebe</h2><span class="line"></span></div>
+      <div class="rec-grid">
+        <div class="rcard"><div class="ric">▶️</div><span>+80 aulas em vídeo</span></div>
+        <div class="rcard"><div class="ric">📄</div><span>Materiais de apoio</span></div>
+        <div class="rcard"><div class="ric">📲</div><span>Acesso pelo celular e TV</span></div>
+        <div class="rcard"><div class="ric">🔄</div><span>Atualizações gratuitas</span></div>
+        <div class="rcard"><div class="ric">👥</div><span>Grupo de alunos exclusivo</span></div>
+      </div>
+    </div>
+    <div class="testi">
+      <div class="avatar">LF</div>
+      <p>"Em menos de 30 dias apliquei o que aprendi e fiz minha primeira venda todos os dias no automático."</p>
+      <div class="stars">★★★★★</div>
+      <b>Lucas Ferreira</b>
+      <small>Empreendedor</small>
+    </div>
+  </div>
+</section>
+
+<!-- OFFER -->
+<section class="sec offer" id="oferta">
+  <div class="wrap offer-grid">
+    <div class="price-box">
+      <span class="tag">Oferta especial</span>
+      <div class="old">De R$ 497,00</div>
+      <div class="plabel">Por apenas</div>
+      <div class="price">12x de R$ 19,74</div>
+      <div class="vista">ou R$ 197,00 à vista</div>
+      <span class="save">ECONOMIZE R$ 300,00</span>
+    </div>
+
+    <div class="offer-mid">
+      <h3>Você recebe</h3>
+      <div class="oitem"><span class="ic">✓</span> Curso completo</div>
+      <div class="oitem"><span class="ic">✓</span> Acesso imediato</div>
+      <div class="oitem"><span class="ic">✓</span> Atualizações vitalícias</div>
+      <div class="oitem"><span class="ic">✓</span> Grupo exclusivo</div>
+      <div class="oitem"><span class="ic">✓</span> Suporte especializado</div>
+      <div class="garantia">
+        <div class="gic">🛡️</div>
+        <div>
+          <b>Garantia 7 dias</b>
+          <p>Se dentro de 7 dias você não ficar satisfeito, é só pedir seu dinheiro de volta. Sem perguntas e sem burocracia.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="offer-cta">
+      <a href="#" class="btn">🔒 QUERO GARANTIR MINHA VAGA</a>
+      <div class="secure">🔒 Acesso imediato e 100% seguro</div>
+      <div class="timer-box">
+        <div class="tl">Oferta por tempo limitado</div>
+        <div class="timer">
+          <div class="tunit"><div class="tv" id="th">02</div><div class="tn">Horas</div></div>
+          <div class="tunit"><div class="tv" id="tm">47</div><div class="tn">Minutos</div></div>
+          <div class="tunit"><div class="tv" id="ts">36</div><div class="tn">Segundos</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-title"><span class="line"></span><h2>Dúvidas frequentes</h2><span class="line"></span></div>
+    <div class="faq-grid">
+      <div class="fitem"><b>Preciso ter experiência para começar?</b><p>Não! O curso foi criado para iniciantes. Começamos do básico e você aprende tudo passo a passo.</p></div>
+      <div class="fitem"><b>Recebo certificado?</b><p>Não. O foco do curso é no aprendizado prático e em resultados reais.</p></div>
+      <div class="fitem"><b>Como funciona o suporte?</b><p>Você terá acesso ao nosso suporte exclusivo e à comunidade de alunos para tirar dúvidas.</p></div>
+      <div class="fitem"><b>Por quanto tempo tenho acesso?</b><p>Você tem acesso vitalício ao curso e a todas as atualizações futuras.</p></div>
+      <div class="fitem"><b>Posso assistir pelo celular?</b><p>Sim! Você pode assistir de onde quiser, pelo celular, computador ou tablet.</p></div>
+      <div class="fitem"><b>Como é o pagamento?</b><p>Pagamento único ou em até 12x no cartão. Ambiente 100% seguro.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 MARKETPRO ACADEMY — Todos os direitos reservados.</footer>
+
+<script>
+// Contador regressivo
+let total = 2*3600 + 47*60 + 36;
+const th=document.getElementById('th'),tm=document.getElementById('tm'),ts=document.getElementById('ts');
+setInterval(()=>{
+  if(total>0) total--;
+  const h=Math.floor(total/3600),m=Math.floor((total%3600)/60),s=total%60;
+  th.textContent=String(h).padStart(2,'0');
+  tm.textContent=String(m).padStart(2,'0');
+  ts.textContent=String(s).padStart(2,'0');
+},1000);
+</script>
+</body>
+</html>
